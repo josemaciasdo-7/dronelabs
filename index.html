@@ -175,6 +175,23 @@
   .svc h3{ font-size:1.12rem; font-weight:700; flex:1; }
   .svc .tag{ font-size:.72rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); font-family:'IBM Plex Mono',monospace; }
 
+  /* ---------- WORK ---------- */
+  .work-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+  @media (max-width:860px){ .work-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .work-grid{ grid-template-columns:1fr; } }
+  .work-tile{
+    position:relative; aspect-ratio:4/3; border-radius:4px; overflow:hidden;
+    background:var(--surface-2); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .work-tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .work-tile svg{ width:28px; height:28px; color:var(--ink-faint); }
+  .work-tile span{
+    position:absolute; bottom:12px; left:12px;
+    font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-faint);
+  }
+
   /* ---------- CONTACT ---------- */
   .contact-grid{ display:grid; grid-template-columns:.85fr 1.15fr; gap:64px; }
   @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; gap:40px; } }
@@ -217,6 +234,7 @@
     <div class="logo"><span class="drone">Drone</span><span class="labs">Labs</span></div>
     <nav class="links">
       <a href="#servicios">Servicios</a>
+      <a href="#trabajo">Nuestro trabajo</a>
       <a href="#nosotros">Sobre nosotros</a>
       <a href="#contacto">Contacto</a>
     </nav>
@@ -295,6 +313,23 @@
   </div>
 </section>
 
+<section id="trabajo">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Portfolio</span>
+      <h2>Nuestro trabajo</h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto próxima</span></div>
+      <div class="work-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto próxima</span></div>
+      <div class="work-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto próxima</span></div>
+      <div class="work-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto próxima</span></div>
+      <div class="work-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto próxima</span></div>
+      <div class="work-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Foto próxima</span></div>
+    </div>
+  </div>
+</section>
+
 <section id="contacto">
   <div class="wrap contact-grid">
     <div class="contact-info">
@@ -350,6 +385,7 @@
     <div class="logo" style="font-size:1.05rem;"><span class="drone">Drone</span><span class="labs">Labs</span></div>
     <div class="foot-links">
       <a href="#servicios">Servicios</a>
+      <a href="#trabajo">Nuestro trabajo</a>
       <a href="#nosotros">Sobre nosotros</a>
       <a href="#contacto">Contacto</a>
     </div>
