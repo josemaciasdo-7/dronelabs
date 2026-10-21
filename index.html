@@ -165,6 +165,17 @@
 
   /* ---------- ABOUT STRIP ---------- */
   .about{ background:var(--surface); border-bottom:1px solid var(--line); border-top:1px solid var(--line); }
+  .about-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:64px; align-items:center; }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
+  .founder{ margin:0; max-width:340px; }
+  @media (max-width:860px){ .founder{ max-width:300px; } }
+  .founder-photo{ aspect-ratio:4/5; border-radius:4px; overflow:hidden; background:var(--surface-2); border:1px solid var(--line); display:flex; align-items:center; justify-content:center; }
+  .founder-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .founder-photo svg{ width:56px; height:56px; color:var(--ink-faint); }
+  .founder figcaption{ display:flex; flex-direction:column; gap:6px; margin-top:18px; }
+  .founder-role{ font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-strong); }
+  .founder-name{ font-size:1.2rem; font-weight:700; }
+  .founder blockquote{ margin:6px 0 0; font-size:.98rem; line-height:1.5; color:var(--ink-soft); font-style:italic; }
 
   /* ---------- SERVICES ---------- */
   .services-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:4px; overflow:hidden; }
@@ -272,13 +283,21 @@
 </section>
 
 <section class="about" id="nosotros">
-  <div class="wrap">
-    <div style="max-width:640px;">
+  <div class="wrap about-grid">
+    <div>
       <span class="eyebrow">Sobre DroneLabs</span>
       <h2 style="margin-top:14px; font-size:clamp(1.6rem,2.8vw,2.1rem); font-weight:800;">Una compañía de drones nacida en Granada</h2>
       <p style="margin-top:20px; font-size:1.08rem; line-height:1.65; color:var(--ink-soft);">DroneLabs es una compañía de drones con sede en Granada.</p>
       <p style="margin-top:16px; font-size:1.08rem; line-height:1.65; color:var(--ink-soft);">Trabajamos con particulares que buscan su certificado de piloto y con empresas que necesitan un dron en el aire de forma profesional.</p>
     </div>
+    <figure class="founder">
+      <div class="founder-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div>
+      <figcaption>
+        <span class="founder-role">Fundador</span>
+        <span class="founder-name">José Macías del Olmo</span>
+        <blockquote>&ldquo;El futuro no se espera, se construye&rdquo;</blockquote>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
