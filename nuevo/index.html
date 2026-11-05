@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="color-scheme" content="dark">
+<title>DroneLabs — Operaciones con drones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Hanken+Grotesk:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#060E1B;
+    --navy:#0B1B31;
+    --navy-2:#112643;
+    --ink:#EAF0F6;
+    --ink-soft:#A3B3C5;
+    --ink-faint:#6F8399;
+    --gold:#E3B94E;
+    --gold-deep:#C99A3B;
+    --line:rgba(255,255,255,.12);
+    --display:'Syne',system-ui,sans-serif;
+    --body:'Hanken Grotesk',system-ui,sans-serif;
+    --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; background:var(--night); }
+  body{ margin:0; background:var(--night); color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+  h1,h2,h3,p,figure,blockquote{ margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  img{ display:block; max-width:100%; }
+  .wrap{ width:min(1240px, 100% - 64px); margin-inline:auto; }
+  @media (max-width:640px){ .wrap{ width:calc(100% - 40px); } }
+  .eyebrow{ font-family:var(--mono); font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); }
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
+
+  .btn{ display:inline-flex; align-items:center; gap:10px; padding:14px 26px; border-radius:2px; font-weight:600; font-size:.95rem; letter-spacing:.01em; border:1px solid transparent; cursor:pointer; font-family:var(--body); transition:transform .2s ease, background .2s ease; }
+  .btn-gold{ background:var(--gold); color:#1B1400; }
+  .btn-gold:hover{ transform:translateY(-2px); background:#F0C868; }
+
+  /* ---------- HEADER ---------- */
+  .top{ position:fixed; inset:0 0 auto 0; z-index:60; transition:background .3s ease, border-color .3s ease; border-bottom:1px solid transparent; }
+  .top.is-scrolled{ background:rgba(6,14,27,.78); backdrop-filter:blur(14px); border-color:var(--line); }
+  .top-row{ display:flex; align-items:center; justify-content:space-between; height:76px; }
+  .logo{ font-family:var(--display); font-weight:800; font-size:1.45rem; letter-spacing:-.02em; }
+  .logo b{ color:var(--gold); font-weight:800; }
+  .nav{ display:flex; gap:38px; }
+  .nav a{ font-size:.92rem; color:var(--ink-soft); transition:color .2s; }
+  .nav a:hover{ color:var(--ink); }
+  @media (max-width:760px){ .nav{ display:none; } }
+
+  /* ---------- ALTÍMETRO ---------- */
+  .hud{ position:fixed; right:26px; top:50%; transform:translateY(-50%); z-index:50; display:flex; flex-direction:column; align-items:flex-end; gap:12px; font-family:var(--mono); font-size:.68rem; letter-spacing:.14em; color:var(--ink-faint); pointer-events:none; }
+  .hud-rail{ position:relative; width:14px; height:34vh; border-right:1px solid var(--ink-faint);
+    background:repeating-linear-gradient(to bottom, transparent 0, transparent calc(8.333% - 1px), var(--ink-faint) calc(8.333% - 1px), var(--ink-faint) 8.333%); background-size:7px 100%; background-repeat:repeat-y; background-position:right top; }
+  .hud-marker{ position:absolute; right:-5px; bottom:0; width:10px; height:10px; background:var(--gold); transform:translateY(50%) rotate(45deg); transition:bottom .12s linear; }
+  .hud-val{ color:var(--gold); font-size:.78rem; }
+  .hud-val b{ font-weight:500; display:inline-block; min-width:2.2ch; text-align:right; }
+  @media (max-width:900px){ .hud{ display:none; } }
+
+  /* ---------- HERO ---------- */
+  .hero{ position:relative; min-height:94svh; display:flex; align-items:flex-end; overflow:hidden; padding:140px 0 72px;
+    background:radial-gradient(120% 90% at 72% 0%, #17376a 0%, var(--navy) 46%, var(--night) 100%); }
+  .contours{ position:absolute; inset:-10% 0; pointer-events:none; }
+  .contours svg{ position:absolute; inset:0; width:100%; height:100%; will-change:transform; }
+  .contours path{ fill:none; vector-effect:non-scaling-stroke; stroke-width:1; }
+  .l1 path{ stroke:var(--gold); } .l2 path{ stroke:#9db8dc; } .l3 path{ stroke:var(--gold); }
+  .hero-inner{ position:relative; z-index:2; will-change:transform; }
+  .hero h1{ font-family:var(--display); font-weight:800; font-size:clamp(3.2rem, 11.5vw, 10.5rem); line-height:.92; letter-spacing:-.045em; margin:22px 0 40px; }
+  .hero h1 span{ display:block; }
+  .hero h1 em{ font-style:normal; color:var(--gold); }
+  .hero-foot{ position:absolute; z-index:2; left:0; right:0; bottom:26px; }
+  .hero-foot .wrap{ display:flex; justify-content:space-between; font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-faint); }
+  @media (max-width:640px){ .hero-foot{ display:none; } .hero{ padding-bottom:56px; } }
+  @media (prefers-reduced-motion:no-preference){
+    .hero h1 span, .hero .eyebrow, .hero .btn{ animation:rise 1s cubic-bezier(.2,.7,.2,1) both; }
+    .hero .eyebrow{ animation-delay:.05s; }
+    .hero h1 span:nth-child(1){ animation-delay:.15s; }
+    .hero h1 span:nth-child(2){ animation-delay:.3s; }
+    .hero .btn{ animation-delay:.5s; }
+    @keyframes rise{ from{ opacity:0; transform:translateY(34px); } to{ opacity:1; transform:none; } }
+  }
+
+  /* ---------- DECLARACIÓN ---------- */
+  .statement{ padding:150px 0; background:var(--night); }
+  .statement p.big{ font-family:var(--display); font-weight:600; font-size:clamp(1.7rem, 4vw, 3.3rem); line-height:1.16; letter-spacing:-.02em; max-width:24ch; margin-top:26px; }
+  .statement p.big + p.big{ color:var(--ink-faint); margin-top:.5em; }
+  @media (max-width:640px){ .statement{ padding:96px 0; } }
+
+  /* ---------- SERVICIOS (sin JS: tres tarjetas) ---------- */
+  .stage{ background:var(--night); padding:20px 0 120px; }
+  .stage-head{ margin-bottom:36px; }
+  .slides{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; width:min(1240px, 100% - 64px); margin-inline:auto; }
+  @media (max-width:860px){ .slides{ grid-template-columns:1fr; width:calc(100% - 40px); } }
+  .slide{ position:relative; }
+  .slide img{ width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:2px; }
+  .slide figcaption{ padding:16px 0 0; }
+  .slide .num{ font-family:var(--mono); font-size:.74rem; color:var(--gold); letter-spacing:.16em; }
+  .slide h3{ font-family:var(--display); font-weight:700; font-size:1.5rem; line-height:1.1; letter-spacing:-.02em; margin:6px 0 8px; }
+  .slide .tag{ font-family:var(--mono); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); }
+  .stage-ui{ display:none; }
+
+  /* ---------- SERVICIOS (con JS: recorrido al hacer scroll) ---------- */
+  .js-stage .stage{ padding:0; height:420svh; position:relative; }
+  .js-stage .stage-sticky{ position:sticky; top:0; height:100svh; overflow:hidden; }
+  .js-stage .slides{ position:absolute; inset:0; display:block; width:auto; margin:0; }
+  .js-stage .slide{ position:absolute; inset:0; opacity:0; }
+  .js-stage .slide:first-child{ opacity:1; }
+  .js-stage .slide img{ position:absolute; inset:0; width:100%; height:100%; aspect-ratio:auto; border-radius:0; transform-origin:50% 55%; will-change:transform; }
+  .js-stage .slide::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(6,14,27,.92) 0%, rgba(6,14,27,.35) 42%, rgba(6,14,27,.1) 100%), linear-gradient(to right, rgba(6,14,27,.55), transparent 60%); }
+  .js-stage .slide figcaption{ position:absolute; z-index:3; left:max(32px, calc((100% - 1240px)/2)); bottom:clamp(60px, 11vh, 120px); padding:0; max-width:min(780px, calc(100% - 64px)); }
+  .js-stage .slide h3{ font-size:clamp(2.4rem, 7vw, 6rem); letter-spacing:-.04em; line-height:.96; margin:14px 0 18px; }
+  .js-stage .slide .num{ font-size:.8rem; }
+  .js-stage .stage-ui{ display:block; position:absolute; z-index:4; left:0; right:0; top:104px; }
+  .js-stage .stage-ui .wrap{ display:flex; justify-content:space-between; align-items:center; }
+  .stage-count{ font-family:var(--mono); font-size:.74rem; letter-spacing:.16em; color:var(--ink-soft); }
+  .stage-count b{ color:var(--gold); font-weight:500; }
+  .stage-bar{ display:none; position:absolute; z-index:4; left:0; right:0; bottom:0; height:2px; background:rgba(255,255,255,.14); }
+  .js-stage .stage-bar{ display:block; }
+  .stage-bar i{ display:block; height:100%; width:0; background:var(--gold); }
+  @media (max-width:640px){ .js-stage .slide figcaption{ left:20px; max-width:calc(100% - 40px); } }
+
+  /* ---------- FUNDADOR ---------- */
+  .founder{ padding:140px 0; background:linear-gradient(180deg, var(--night), var(--navy) 60%, var(--night)); }
+  .founder-grid{ display:grid; grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr); gap:clamp(40px, 8vw, 120px); align-items:center; }
+  @media (max-width:860px){ .founder-grid{ grid-template-columns:1fr; } .founder{ padding:96px 0; } }
+  .portrait img{ width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:2px; }
+  .founder blockquote{ font-family:var(--display); font-weight:700; font-size:clamp(2rem, 5vw, 4.2rem); line-height:1.04; letter-spacing:-.035em; margin:22px 0 36px; }
+  .founder blockquote::before{ content:"“"; color:var(--gold); }
+  .founder blockquote::after{ content:"”"; color:var(--gold); }
+  .who strong{ display:block; font-size:1.15rem; font-weight:600; }
+  .who span{ font-family:var(--mono); font-size:.74rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+
+  /* ---------- CONTACTO ---------- */
+  .contact{ padding:140px 0 110px; background:var(--night); }
+  .contact-grid{ display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(40px, 8vw, 110px); }
+  @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; } .contact{ padding:96px 0 80px; } }
+  .contact h2{ font-family:var(--display); font-weight:800; font-size:clamp(2.4rem, 6vw, 5rem); line-height:.98; letter-spacing:-.04em; margin:18px 0 34px; }
+  .contact-meta{ display:grid; gap:20px; }
+  .contact-meta dt{ font-family:var(--mono); font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-faint); }
+  .contact-meta dd{ margin:4px 0 0; font-size:1.05rem; }
+  .contact-meta a{ border-bottom:1px solid var(--gold-deep); }
+  form{ display:grid; grid-template-columns:1fr 1fr; gap:18px; align-content:start; }
+  .field{ display:flex; flex-direction:column; gap:8px; }
+  .field.full{ grid-column:1/-1; }
+  @media (max-width:560px){ form{ grid-template-columns:1fr; } }
+  label{ font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+  input, select, textarea{ font:inherit; color:var(--ink); background:transparent; border:0; border-bottom:1px solid var(--line); padding:12px 0; border-radius:0; }
+  select option{ background:var(--navy); color:var(--ink); }
+  input:focus, select:focus, textarea:focus{ outline:none; border-bottom-color:var(--gold); }
+  textarea{ min-height:110px; resize:vertical; }
+  form .btn{ justify-self:start; margin-top:8px; }
+
+  footer{ border-top:1px solid var(--line); padding:34px 0 44px; background:var(--night); }
+  .foot{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; align-items:center; }
+  .foot p{ font-size:.78rem; color:var(--ink-faint); max-width:60ch; }
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <div class="wrap top-row">
+    <a class="logo" href="#inicio">Drone<b>Labs</b></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#servicios">Servicios</a>
+      <a href="#fundador">Fundador</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="btn btn-gold" href="#contacto">Solicitar presupuesto</a>
+  </div>
+</header>
+
+<aside class="hud" aria-hidden="true">
+  <span>ALT AGL</span>
+  <div class="hud-rail"><i class="hud-marker" id="hudMarker"></i></div>
+  <span class="hud-val"><b id="hudAlt">0</b> m</span>
+</aside>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="contours" aria-hidden="true">
+      <svg class="l1" viewBox="0 0 1600 900" preserveAspectRatio="none"></svg>
+      <svg class="l2" viewBox="0 0 1600 900" preserveAspectRatio="none"></svg>
+      <svg class="l3" viewBox="0 0 1600 900" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="wrap hero-inner" id="heroInner">
+      <p class="eyebrow">DroneLabs SL</p>
+      <h1><span>Operaciones</span><span>con <em>drones</em></span></h1>
+      <a class="btn btn-gold" href="#contacto">Solicitar presupuesto</a>
+    </div>
+    <div class="hero-foot"><div class="wrap"><span>Granada · 37.18° N 3.60° O</span><span>Desliza para despegar</span></div></div>
+  </section>
+
+  <section class="statement">
+    <div class="wrap">
+      <p class="eyebrow">Sobre DroneLabs</p>
+      <p class="big">DroneLabs es una compañía de drones con sede en Granada.</p>
+      <p class="big">Trabajamos con particulares que buscan su certificado de piloto y con empresas que necesitan un dron en el aire de forma profesional.</p>
+    </div>
+  </section>
+
+  <section class="stage" id="servicios" aria-label="Servicios">
+    <div class="stage-sticky">
+      <div class="stage-ui"><div class="wrap"><span class="eyebrow">Servicios</span><span class="stage-count"><b id="stageNum">01</b> / 03</span></div></div>
+      <div class="slides">
+        <figure class="slide">
+          <img src="img/certificacion.jpg" alt="Dos instructores de DroneLabs observan un dron en vuelo al atardecer con Sierra Nevada al fondo" style="object-position:30% 50%">
+          <figcaption><span class="num">01</span><h3>Certificación como piloto</h3><span class="tag">STS-01 · STS-02</span></figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="img/eventos.jpg" alt="Vista aérea de un evento al aire libre al atardecer, con carpas y guirnaldas de luces entre olivares" style="object-position:50% 50%">
+          <figcaption><span class="num">02</span><h3>Eventos, contenido RRSS</h3><span class="tag">Ferias · Exhibiciones · Vídeo</span></figcaption>
+        </figure>
+        <figure class="slide">
+          <img src="img/equipo.jpg" alt="Dron profesional con mando, baterías y portátil de edición sobre una mesa de trabajo" style="object-position:45% 50%">
+          <figcaption><span class="num">03</span><h3>Inspección y mantenimiento</h3><span class="tag">Ortofotos · Modelos 3D · Informes</span></figcaption>
+        </figure>
+      </div>
+      <div class="stage-bar"><i id="stageBar"></i></div>
+    </div>
+  </section>
+
+  <section class="founder" id="fundador">
+    <div class="wrap founder-grid">
+      <figure class="portrait"><img src="../img/fundador.jpg" alt="José Macías del Olmo, fundador de DroneLabs" loading="lazy"></figure>
+      <div>
+        <p class="eyebrow">Fundador</p>
+        <blockquote>El futuro no se espera, se construye</blockquote>
+        <p class="who"><strong>José Macías del Olmo</strong><span>Fundador de DroneLabs</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="eyebrow">Contacto</p>
+        <h2>Cuéntanos tu proyecto</h2>
+        <dl class="contact-meta">
+          <div><dt>Correo</dt><dd><a href="mailto:dronelabssl@gmail.com">dronelabssl@gmail.com</a></dd></div>
+          <div><dt>Domicilio social</dt><dd>Granada, España</dd></div>
+        </dl>
+      </div>
+      <form action="https://formsubmit.co/dronelabssl@gmail.com" method="POST" target="_blank">
+        <input type="hidden" name="_subject" value="Nueva solicitud desde la web de DroneLabs">
+        <input type="hidden" name="_captcha" value="false">
+        <div class="field"><label for="nombre">Nombre</label><input id="nombre" name="Nombre" type="text" required></div>
+        <div class="field"><label for="email">Correo</label><input id="email" name="Correo" type="email" required></div>
+        <div class="field full"><label for="servicio">Servicio de interés</label>
+          <select id="servicio" name="Servicio">
+            <option>Formación y certificación</option>
+            <option>Audiovisual</option>
+            <option>Eventos</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field full"><label for="mensaje">Cuéntanos qué necesitas</label><textarea id="mensaje" name="Mensaje"></textarea></div>
+        <button class="btn btn-gold" type="submit">Enviar solicitud</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="logo" href="#inicio" style="font-size:1.1rem">Drone<b>Labs</b></a>
+    <p>DroneLabs, Sociedad Limitada. Domicilio social: Granada, España. NIF B05601653. © 2026 DroneLabs S.L.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var root = document.documentElement;
+  var top = document.getElementById('top');
+  var hudMarker = document.getElementById('hudMarker');
+  var hudAlt = document.getElementById('hudAlt');
+  var heroInner = document.getElementById('heroInner');
+  var hero = document.getElementById('inicio');
+  var layers = document.querySelectorAll('.contours svg');
+  var stage = document.getElementById('servicios');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var stageBar = document.getElementById('stageBar');
+  var stageNum = document.getElementById('stageNum');
+  var clamp = function(v,a,b){ return Math.min(b, Math.max(a, v)); };
+
+  function wave(y0, amp, f, ph){
+    var d = '';
+    for (var x = 0; x <= 1600; x += 16){
+      var y = y0 + Math.sin(x*f + ph)*amp + Math.sin(x*f*2.3 + ph*1.7)*amp*.4 + Math.sin(x*f*.45 + ph*.6)*amp*.8;
+      d += (x ? 'L' : 'M') + x + ' ' + y.toFixed(1);
+    }
+    return d;
+  }
+  var cfg = [{n:11, y:120, gap:62, amp:34, f:.0042, op:.34}, {n:9, y:200, gap:78, amp:46, f:.0031, op:.22}, {n:7, y:330, gap:96, amp:58, f:.0024, op:.16}];
+  layers.forEach(function(svg, i){
+    var c = cfg[i], html = '';
+    for (var k = 0; k < c.n; k++){
+      html += '<path d="' + wave(c.y + k*c.gap, c.amp, c.f, i*1.3 + k*.35) + '" opacity="' + (c.op * (1 - k/(c.n*1.25))).toFixed(2) + '"/>';
+    }
+    svg.innerHTML = html;
+  });
+
+  if (!reduce) root.classList.add('js-stage');
+
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var y = window.scrollY || window.pageYOffset;
+    var vh = window.innerHeight;
+    var max = Math.max(1, document.documentElement.scrollHeight - vh);
+    var p = clamp(y / max, 0, 1);
+
+    top.classList.toggle('is-scrolled', y > 24);
+    hudMarker.style.bottom = (p * 100) + '%';
+    hudAlt.textContent = Math.round(p * 120);
+
+    if (!reduce && y < vh * 1.4){
+      layers[0].style.transform = 'translate3d(0,' + (y*.12).toFixed(1) + 'px,0)';
+      layers[1].style.transform = 'translate3d(0,' + (y*.26).toFixed(1) + 'px,0)';
+      layers[2].style.transform = 'translate3d(0,' + (y*.44).toFixed(1) + 'px,0)';
+      heroInner.style.transform = 'translate3d(0,' + (y*.18).toFixed(1) + 'px,0)';
+    }
+
+    if (!reduce && root.classList.contains('js-stage')){
+      var r = stage.getBoundingClientRect();
+      var sp = clamp(-r.top / Math.max(1, r.height - vh), 0, 1);
+      var n = slides.length;
+      var f = clamp(sp * n, .5, n - .5);
+      slides.forEach(function(s, i){
+        var o = clamp(1.5 - Math.abs(f - (i + .5)) * 2, 0, 1);
+        var local = clamp(sp * n - i, 0, 1);
+        s.style.opacity = o.toFixed(3);
+        s.style.zIndex = o > .5 ? 2 : 1;
+        s.firstElementChild.style.transform = 'scale(' + (1.04 + .13*local).toFixed(4) + ')';
+        var cap = s.querySelector('figcaption');
+        cap.style.transform = 'translate3d(0,' + ((1 - o) * 26).toFixed(1) + 'px,0)';
+        cap.style.visibility = o < .02 ? 'hidden' : 'visible';
+      });
+      stageBar.style.width = (sp * 100).toFixed(1) + '%';
+      stageNum.textContent = '0' + (Math.min(n, Math.floor(sp * n) + 1));
+    }
+  }
+  function req(){ if (!ticking){ ticking = true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', req, {passive:true});
+  window.addEventListener('resize', req);
+  update();
+})();
+</script>
+</body>
+</html>
