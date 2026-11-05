@@ -1,11 +1,65 @@
 {
   "version": 1,
   "scenes": [
-    { "id": "01-nubes",       "desktop": { "frames": 0 }, "mobile": { "frames": 0 }, "poster": false },
-    { "id": "02-preparacion", "desktop": { "frames": 0 }, "mobile": { "frames": 0 }, "poster": false },
-    { "id": "03-despegue",    "desktop": { "frames": 0 }, "mobile": { "frames": 0 }, "poster": false },
-    { "id": "04-persecucion", "desktop": { "frames": 0 }, "mobile": { "frames": 0 }, "poster": false },
-    { "id": "05-anatomia",    "desktop": { "frames": 0 }, "mobile": { "frames": 0 }, "poster": false },
-    { "id": "06-aterrizaje",  "desktop": { "frames": 0 }, "mobile": { "frames": 0 }, "poster": false }
+    {
+      "id": "01-nubes",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "02-preparacion",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "03-despegue",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "04-persecucion",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "05-anatomia",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "06-aterrizaje",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    }
   ]
 }
