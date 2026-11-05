@@ -54,30 +54,10 @@
     {
       "id": "06-audiovisual",
       "desktop": {
-        "frames": 48
+        "frames": 100
       },
       "mobile": {
-        "frames": 24
-      },
-      "poster": true
-    },
-    {
-      "id": "07-inspeccion",
-      "desktop": {
-        "frames": 52
-      },
-      "mobile": {
-        "frames": 26
-      },
-      "poster": true
-    },
-    {
-      "id": "08-agricultura",
-      "desktop": {
-        "frames": 48
-      },
-      "mobile": {
-        "frames": 24
+        "frames": 50
       },
       "poster": true
     },
