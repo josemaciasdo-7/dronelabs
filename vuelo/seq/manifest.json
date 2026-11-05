@@ -12,16 +12,6 @@
       "poster": true
     },
     {
-      "id": "02-preparacion",
-      "desktop": {
-        "frames": 100
-      },
-      "mobile": {
-        "frames": 50
-      },
-      "poster": true
-    },
-    {
       "id": "03-anatomia",
       "desktop": {
         "frames": 0
@@ -44,10 +34,10 @@
     {
       "id": "05-eventos",
       "desktop": {
-        "frames": 100
+        "frames": 90
       },
       "mobile": {
-        "frames": 50
+        "frames": 45
       },
       "poster": true
     },
