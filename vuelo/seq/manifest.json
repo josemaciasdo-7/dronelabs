@@ -22,7 +22,7 @@
       "poster": false
     },
     {
-      "id": "03-despegue",
+      "id": "03-anatomia",
       "desktop": {
         "frames": 0
       },
@@ -32,7 +32,7 @@
       "poster": false
     },
     {
-      "id": "04-persecucion",
+      "id": "04-formacion",
       "desktop": {
         "frames": 0
       },
@@ -42,7 +42,7 @@
       "poster": false
     },
     {
-      "id": "05-anatomia",
+      "id": "05-eventos",
       "desktop": {
         "frames": 0
       },
@@ -52,7 +52,37 @@
       "poster": false
     },
     {
-      "id": "06-aterrizaje",
+      "id": "06-audiovisual",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "07-inspeccion",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "08-agricultura",
+      "desktop": {
+        "frames": 0
+      },
+      "mobile": {
+        "frames": 0
+      },
+      "poster": false
+    },
+    {
+      "id": "09-aterrizaje",
       "desktop": {
         "frames": 0
       },
