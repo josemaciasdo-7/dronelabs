@@ -4,70 +4,80 @@
     {
       "id": "01-nubes",
       "desktop": {
-        "frames": 100
+        "frames": 37
       },
       "mobile": {
-        "frames": 50
+        "frames": 18
+      },
+      "poster": true
+    },
+    {
+      "id": "02-hangar",
+      "desktop": {
+        "frames": 43
+      },
+      "mobile": {
+        "frames": 21
       },
       "poster": true
     },
     {
       "id": "03-anatomia",
       "desktop": {
-        "frames": 0
+        "frames": 80
       },
       "mobile": {
-        "frames": 0
+        "frames": 40
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "04-formacion",
       "desktop": {
-        "frames": 100
+        "frames": 39
       },
       "mobile": {
-        "frames": 50
+        "frames": 19
       },
       "poster": true
     },
     {
       "id": "05-eventos",
       "desktop": {
-        "frames": 90
+        "frames": 38
       },
       "mobile": {
-        "frames": 45
+        "frames": 19
       },
       "poster": true
     },
     {
       "id": "06-audiovisual",
       "desktop": {
-        "frames": 100
+        "frames": 48
       },
       "mobile": {
-        "frames": 50
+        "frames": 24
       },
       "poster": true
     },
     {
       "id": "07-inspeccion",
       "desktop": {
-        "frames": 90
+        "frames": 52
       },
       "mobile": {
-        "frames": 45
+        "frames": 26
       },
       "poster": true
     },
     {
       "id": "08-agricultura",
       "desktop": {
-        "frames": 90
+        "frames": 48
       },
       "mobile": {
-        "frames": 45
+        "frames": 24
       },
       "poster": true
     },
