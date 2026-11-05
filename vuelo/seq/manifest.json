@@ -4,22 +4,22 @@
     {
       "id": "01-nubes",
       "desktop": {
-        "frames": 0
+        "frames": 100
       },
       "mobile": {
-        "frames": 0
+        "frames": 50
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "02-preparacion",
       "desktop": {
-        "frames": 0
+        "frames": 110
       },
       "mobile": {
-        "frames": 0
+        "frames": 55
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "03-anatomia",
@@ -34,62 +34,62 @@
     {
       "id": "04-formacion",
       "desktop": {
-        "frames": 0
+        "frames": 109
       },
       "mobile": {
-        "frames": 0
+        "frames": 55
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "05-eventos",
       "desktop": {
-        "frames": 0
+        "frames": 90
       },
       "mobile": {
-        "frames": 0
+        "frames": 45
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "06-audiovisual",
       "desktop": {
-        "frames": 0
+        "frames": 110
       },
       "mobile": {
-        "frames": 0
+        "frames": 55
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "07-inspeccion",
       "desktop": {
-        "frames": 0
+        "frames": 90
       },
       "mobile": {
-        "frames": 0
+        "frames": 45
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "08-agricultura",
       "desktop": {
-        "frames": 0
+        "frames": 90
       },
       "mobile": {
-        "frames": 0
+        "frames": 45
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "09-aterrizaje",
       "desktop": {
-        "frames": 0
+        "frames": 110
       },
       "mobile": {
-        "frames": 0
+        "frames": 55
       },
-      "poster": false
+      "poster": true
     }
   ]
 }
