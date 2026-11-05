@@ -14,10 +14,10 @@
     {
       "id": "02-preparacion",
       "desktop": {
-        "frames": 110
+        "frames": 100
       },
       "mobile": {
-        "frames": 55
+        "frames": 50
       },
       "poster": true
     },
@@ -34,30 +34,30 @@
     {
       "id": "04-formacion",
       "desktop": {
-        "frames": 109
+        "frames": 100
       },
       "mobile": {
-        "frames": 55
+        "frames": 50
       },
       "poster": true
     },
     {
       "id": "05-eventos",
       "desktop": {
-        "frames": 90
+        "frames": 100
       },
       "mobile": {
-        "frames": 45
+        "frames": 50
       },
       "poster": true
     },
     {
       "id": "06-audiovisual",
       "desktop": {
-        "frames": 110
+        "frames": 100
       },
       "mobile": {
-        "frames": 55
+        "frames": 50
       },
       "poster": true
     },
@@ -84,10 +84,10 @@
     {
       "id": "09-aterrizaje",
       "desktop": {
-        "frames": 110
+        "frames": 90
       },
       "mobile": {
-        "frames": 55
+        "frames": 45
       },
       "poster": true
     }
