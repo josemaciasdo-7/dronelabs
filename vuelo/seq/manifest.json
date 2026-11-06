@@ -24,12 +24,12 @@
     {
       "id": "03-anatomia",
       "desktop": {
-        "frames": 0
+        "frames": 64
       },
       "mobile": {
-        "frames": 0
+        "frames": 33
       },
-      "poster": false
+      "poster": true
     },
     {
       "id": "04-formacion",
