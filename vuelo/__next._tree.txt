@@ -6,4 +6,4 @@
 :HL["/vuelo/_next/static/media/82450a180bcad83c-s.p.0p-wng2nn8o-p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/vuelo/_next/static/media/9a321a2c78eff0b5-s.p.1bkzbscqrt8rl.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"gj7GwwP0dwVBd0kui_gSu","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"9dKb71TPCnRhd7t-Kzv_F","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
