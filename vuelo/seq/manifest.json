@@ -4,50 +4,50 @@
     {
       "id": "01-nubes",
       "desktop": {
-        "frames": 37
+        "frames": 100
       },
       "mobile": {
-        "frames": 18
+        "frames": 50
       },
       "poster": true
     },
     {
       "id": "02-hangar",
       "desktop": {
-        "frames": 43
+        "frames": 100
       },
       "mobile": {
-        "frames": 21
+        "frames": 50
       },
       "poster": true
     },
     {
       "id": "03-anatomia",
       "desktop": {
-        "frames": 80
+        "frames": 0
       },
       "mobile": {
-        "frames": 40
+        "frames": 0
       },
-      "poster": true
+      "poster": false
     },
     {
       "id": "04-formacion",
       "desktop": {
-        "frames": 39
+        "frames": 100
       },
       "mobile": {
-        "frames": 19
+        "frames": 50
       },
       "poster": true
     },
     {
       "id": "05-eventos",
       "desktop": {
-        "frames": 38
+        "frames": 90
       },
       "mobile": {
-        "frames": 19
+        "frames": 45
       },
       "poster": true
     },
