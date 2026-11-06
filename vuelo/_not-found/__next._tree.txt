@@ -1,4 +1,4 @@
-:HL["/vuelo/_next/static/chunks/3bf189c5lgwaf.css","style"]
+:HL["/vuelo/_next/static/chunks/1djqi-0ri-fub.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"QxUv5jniFo5Own8zUuv4-","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"aLALT6cB8ktzzJY-_Rn-Q","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
